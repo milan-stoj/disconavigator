@@ -1,0 +1,1 @@
+ALTER TABLE `organization` ADD `competitor_note` text;

@@ -1,0 +1,12 @@
+**/node_modules
+**/dist
+data
+.env
+.git
+apps/web/test-results
+apps/web/playwright-report
+apps/web/e2e/.auth
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/*.tsbuildinfo

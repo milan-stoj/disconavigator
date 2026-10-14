@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+*.db
+*.db-shm
+*.db-wal
+data/
+.env
+apps/web/test-results
+apps/web/playwright-report
+*.tsbuildinfo
+apps/web/e2e/.auth

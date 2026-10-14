@@ -1,0 +1,30 @@
+# systemd unit for running Disco Controller directly on a Raspberry Pi 5.
+# Install (see docs/deployment.md):
+#   sudo cp deploy/disco-controller.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now disco-controller
+[Unit]
+Description=Disco Controller
+Documentation=file:///opt/disco-controller/docs/deployment.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=disco
+Group=disco
+WorkingDirectory=/opt/disco-controller
+EnvironmentFile=/etc/disco-controller.env
+Environment=NODE_ENV=production
+Environment=DATABASE_PATH=/var/lib/disco-controller/disco.db
+ExecStart=/usr/bin/node /opt/disco-controller/apps/server/dist/index.js
+Restart=on-failure
+RestartSec=5
+StateDirectory=disco-controller
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/disco-controller
+
+[Install]
+WantedBy=multi-user.target

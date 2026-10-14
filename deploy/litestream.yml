@@ -1,0 +1,13 @@
+# Litestream continuously replicates the SQLite database to Backblaze B2.
+# Install to /etc/litestream.yml. Credentials come from the environment
+# (LITESTREAM_ACCESS_KEY_ID / LITESTREAM_SECRET_ACCESS_KEY), set in
+# /etc/default/litestream or the Compose `litestream` service.
+# Restore procedure: docs/deployment.md#restore
+dbs:
+  - path: ${DISCO_DB_PATH}
+    replica:
+      type: s3
+      bucket: ${LITESTREAM_BUCKET}
+      path: disco-controller
+      # e.g. s3.us-west-004.backblazeb2.com (shown on the B2 bucket page)
+      endpoint: ${LITESTREAM_ENDPOINT}
